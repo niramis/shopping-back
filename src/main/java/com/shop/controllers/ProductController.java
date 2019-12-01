@@ -24,27 +24,27 @@ public class ProductController {
         return (List<Product>) productRepository.findAll();
     }
 
-    @GetMapping(path = "/add")
-    public List<Product> createList() {
-        List<Product> tempProducts = new ArrayList<>();
-        Product p1 = new Product();
-        p1.setName("name1");
-        p1.setPrice(22.2);
-        p1.setDescription("desc1");
-
-        Product p2 = new Product();
-        p2.setName("name2");
-        p2.setPrice(22.2);
-        p2.setDescription("desc2");
-
-        tempProducts.add(p1);
-        tempProducts.add(p2);
-
-        productRepository.save(p1);
-        productRepository.save(p2);
-
-        return tempProducts;
-    }
+//    @GetMapping(path = "/add")
+//    public List<Product> createList() {
+//        List<Product> tempProducts = new ArrayList<>();
+//        Product p1 = new Product();
+//        p1.setName("name1");
+//        p1.setPrice(22.2);
+//        p1.setDescription("desc1");
+//
+//        Product p2 = new Product();
+//        p2.setName("name2");
+//        p2.setPrice(22.2);
+//        p2.setDescription("desc2");
+//
+//        tempProducts.add(p1);
+//        tempProducts.add(p2);
+//
+//        productRepository.save(p1);
+//        productRepository.save(p2);
+//
+//        return tempProducts;
+//    }
 
 //    @PostMapping
 //    public Product addProduct(@RequestBody Product product) {
@@ -90,6 +90,13 @@ public class ProductController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable("category") String category) {
+        return productRepository.getProductsByCategory(category);
+    }
+
+    // @Get 
+    //get by categories
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/category/{category}")
+    public List<Product> getProductsByCategories(@PathVariable("category") String category) {
         return productRepository.getProductsByCategory(category);
     }
 
